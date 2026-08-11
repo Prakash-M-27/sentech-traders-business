@@ -122,8 +122,6 @@ export default function EnquirySection() {
 
       const phone = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919999999999'
       const msg = encodeURIComponent(
-        `WELCOME ★!!!\n\n` +
-        `Tip: Attach a high-quality photo in your message for the best print results.\n\n` +
         `Name: ${formData.name}\n` +
         `Phone: ${formData.phone}\n` +
         `Email: ${formData.email}\n` +
