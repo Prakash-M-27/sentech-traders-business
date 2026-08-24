@@ -4,6 +4,7 @@ export default function WhySection() {
   return (
     <section className="section why-section" id="about">
       <div className="why-image">
+        <img src="/gpt_design.png" alt="Sen Tech calendar design" className="why-photo" />
         <div className="why-card">
           <span>01</span>
           <strong>Good design<br />is useful.</strong>
