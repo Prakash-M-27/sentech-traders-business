@@ -7,8 +7,8 @@ export const metadata: Metadata = {
   description: 'Beautiful calendars and paper goods designed to bring a little more intention to every day.',
   generator: 'v0.app',
   icons: {
-    icon: '/sentech2.png',
-    apple: '/sentech2.png',
+    icon: '/sentech_logo_180x180.png',
+    apple: '/sentech_logo_180x180.png',
   },
 }
 
