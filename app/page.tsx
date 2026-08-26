@@ -25,11 +25,11 @@ export default function Page() {
         </section>
       </Reveal>
 
-      <Reveal delay={0.2}><EnquirySection /></Reveal>
-
       <Reveal delay={0.2}><WhySection /></Reveal>
 
       <Reveal delay={0.15}><Gallery /></Reveal>
+
+      <Reveal delay={0.2}><EnquirySection /></Reveal>
 
       <Footer />
     </main>
