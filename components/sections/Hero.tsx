@@ -81,7 +81,7 @@ export default function Hero() {
 
       {/* Main Hero Container */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 my-0 sm:my-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-0.5 sm:gap-8 items-center">
           
           {/* Left Column: Typography & CTAs (col-span-5 for ample breathing room) */}
           <motion.div
@@ -93,7 +93,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: isDesktop ? 60 : 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: isDesktop ? 0.85 : 0.4, delay: isDesktop ? 0.85 : 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EBF2EC] border border-[#DCE8DE] mb-3 sm:mb-6 shadow-2xs"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EBF2EC] border border-[#DCE8DE] mb-2.5 sm:mb-6 shadow-2xs"
             >
               <Sparkles className="w-3.5 h-3.5 text-[#1B4332]" />
               <span className="font-sans text-[10.5px] sm:text-[11px] font-bold uppercase tracking-[0.22em] text-[#1B4332]">
@@ -137,7 +137,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: isDesktop ? 60 : 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: isDesktop ? 0.85 : 0.4, delay: isDesktop ? 1.22 : 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-2.5 sm:mt-5 max-w-lg text-sm sm:text-lg text-[#4A4D49] leading-relaxed font-sans font-normal"
+              className="mt-2 sm:mt-5 max-w-lg text-sm sm:text-lg text-[#4A4D49] leading-relaxed font-sans font-normal"
             >
               Handcrafted daily tear-off calendars made for clarity and focus every day.
             </motion.p>
@@ -147,7 +147,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: isDesktop ? 50 : 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: isDesktop ? 0.8 : 0.4, delay: isDesktop ? 1.32 : 0.35, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-2.5 sm:mt-5 flex flex-wrap gap-1.5 sm:gap-2"
+              className="mt-2 sm:mt-5 flex flex-wrap gap-1.5 sm:gap-2"
             >
               {[
                 { text: 'Teak Wood Base', icon: Award },
@@ -172,7 +172,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: isDesktop ? 55 : 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: isDesktop ? 0.85 : 0.4, delay: isDesktop ? 1.42 : 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-3.5 sm:mt-8 flex flex-wrap items-center gap-2.5 sm:gap-4"
+              className="mt-2.5 sm:mt-8 flex flex-wrap items-center gap-2.5 sm:gap-4"
             >
               <MagneticButton
                 as="a"
@@ -224,7 +224,7 @@ export default function Hero() {
           </motion.div>
 
           {/* Right Column: Prominent Dual Animated Showcase */}
-          <div className="lg:col-span-7 relative mt-1 sm:mt-8 lg:mt-0 flex flex-col items-center w-full">
+          <div className="lg:col-span-7 relative -mt-1 sm:mt-8 lg:mt-0 flex flex-col items-center w-full">
             
             {/* View Mode Toggle Pill with Animated Active Indicator (Hidden on mobile - fixed dual view) */}
             <motion.div
@@ -269,7 +269,7 @@ export default function Hero() {
             </motion.div>
 
             {/* EXPANDED & CRYSTAL-CLEAR DUAL SHOWCASE STAGE */}
-            <div className="relative w-full max-w-[640px] lg:max-w-none h-[410px] xs:h-[450px] sm:h-[500px] lg:h-[580px] flex items-center justify-center px-1 sm:px-2">
+            <div className="relative w-full max-w-[640px] lg:max-w-none h-[320px] xs:h-[350px] sm:h-[500px] lg:h-[580px] flex items-center justify-center px-1 sm:px-2">
               
               {/* Rotating Concentric Artisanal Seal Background Stamp */}
               <motion.div
@@ -384,7 +384,7 @@ export default function Hero() {
                 onClick={() =>
                   setInspectImage({
                     src: '/cal_1.jpeg',
-                    title: 'SEN TECH Daily Desk Calendar',
+                    title: 'SEN TECH Daily Wall Calendar',
                     edition: 'Edition 01 • 2027',
                   })
                 }
@@ -459,7 +459,7 @@ export default function Hero() {
                         <div className="absolute top-2.5 sm:top-3 left-2.5 sm:left-3 bg-white/95 backdrop-blur-md px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full border border-[#DCE8DE] shadow-xs flex items-center gap-1 sm:gap-1.5">
                           <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#1B4332] animate-pulse" />
                           <span className="text-[8.5px] sm:text-[9px] font-mono font-bold text-[#1B4332] uppercase tracking-wider">
-                            EDITION 01 • DESK
+                            EDITION 01 • WALL
                           </span>
                         </div>
 
@@ -467,7 +467,7 @@ export default function Hero() {
                         <div className="absolute bottom-2.5 sm:bottom-3 left-2.5 right-2.5 sm:left-3 sm:right-3 bg-white/95 backdrop-blur-md px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-xl border border-[#E2DDD3] flex items-center justify-between shadow-xs">
                           <div>
                             <p className="font-serif text-xs sm:text-xs font-semibold text-[#121413] leading-tight">
-                              Desk Classic
+                              Wall Classic
                             </p>
                             <p className="text-[8.5px] sm:text-[9px] text-[#737770] font-sans font-medium uppercase tracking-wider mt-0.5">
                               Teak Mount • Foil
