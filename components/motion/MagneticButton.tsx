@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState, type ReactNode, type MouseEvent } from 'react'
+import { useRef, useState, useEffect, type ReactNode, type MouseEvent } from 'react'
 import { motion, useSpring, useMotionValue } from 'framer-motion'
 
 interface MagneticButtonProps {
@@ -24,6 +24,7 @@ export default function MagneticButton({
 }: MagneticButtonProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [isHovered, setIsHovered] = useState(false)
+  const [isDesktop, setIsDesktop] = useState(false)
 
   const x = useMotionValue(0)
   const y = useMotionValue(0)
@@ -32,8 +33,14 @@ export default function MagneticButton({
   const springX = useSpring(x, springConfig)
   const springY = useSpring(y, springConfig)
 
+  useEffect(() => {
+    const hasFinePointer = window.matchMedia('(pointer: fine)').matches
+    const isWideEnough = window.innerWidth >= 768
+    setIsDesktop(hasFinePointer && isWideEnough)
+  }, [])
+
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-    if (!ref.current) return
+    if (!isDesktop || !ref.current) return
     const { clientX, clientY } = e
     const { left, top, width, height } = ref.current.getBoundingClientRect()
     const centerX = left + width / 2
@@ -46,14 +53,32 @@ export default function MagneticButton({
   }
 
   const handleMouseEnter = () => {
-    if (window.matchMedia('(pointer: coarse)').matches) return
+    if (!isDesktop) return
     setIsHovered(true)
   }
 
   const handleMouseLeave = () => {
+    if (!isDesktop) return
     setIsHovered(false)
     x.set(0)
     y.set(0)
+  }
+
+  const innerContent =
+    Component === 'a' ? (
+      <a href={href} onClick={onClick} className="block w-full h-full">
+        {children}
+      </a>
+    ) : Component === 'button' ? (
+      <button onClick={onClick} className="block w-full h-full">
+        {children}
+      </button>
+    ) : (
+      <div onClick={onClick}>{children}</div>
+    )
+
+  if (!isDesktop) {
+    return <div className={`inline-block ${className}`}>{innerContent}</div>
   }
 
   return (
@@ -66,17 +91,7 @@ export default function MagneticButton({
       className={`inline-block ${className}`}
       data-cursor={dataCursor}
     >
-      {Component === 'a' ? (
-        <a href={href} onClick={onClick} className="block w-full h-full">
-          {children}
-        </a>
-      ) : Component === 'button' ? (
-        <button onClick={onClick} className="block w-full h-full">
-          {children}
-        </button>
-      ) : (
-        <div onClick={onClick}>{children}</div>
-      )}
+      {innerContent}
     </motion.div>
   )
 }

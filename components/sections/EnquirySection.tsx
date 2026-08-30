@@ -162,7 +162,7 @@ export default function EnquirySection() {
   return (
     <section
       id="enquiry"
-      className="pt-10 sm:pt-14 lg:pt-16 pb-24 sm:pb-32 lg:pb-36 bg-[#FAF7F2] relative overflow-hidden border-b border-[#E2DDD3]"
+      className="pt-8 sm:pt-14 lg:pt-16 pb-16 sm:pb-32 lg:pb-36 bg-[#FAF7F2] relative overflow-hidden border-b border-[#E2DDD3]"
     >
       {/* Giant Ambient Background Typography Watermark */}
       <div
@@ -177,11 +177,11 @@ export default function EnquirySection() {
       {/* Grid Pattern */}
       <div className="absolute inset-0 opacity-[0.025] pointer-events-none bg-[radial-gradient(#121413_1px,transparent_1px)] [background-size:28px_28px]" />
 
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-stretch">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-stretch">
           {/* Left Column: Editorial Contact Narrative & Touchpoints */}
-          <div className="lg:col-span-5 flex flex-col justify-between space-y-10">
-            <div className="space-y-6">
+          <div className="lg:col-span-5 flex flex-col justify-between space-y-8 sm:space-y-10">
+            <div className="space-y-4 sm:space-y-6">
               {/* Animated Kicker Badge */}
               <motion.div
                 initial={{ opacity: 0, y: 15 }}
@@ -226,7 +226,7 @@ export default function EnquirySection() {
             </div>
 
             {/* Direct Studio Contact Cards with Hover Micro-Animations */}
-            <div className="space-y-4 pt-4 border-t border-[#E2DDD3]">
+            <div className="space-y-3 sm:space-y-4 pt-4 border-t border-[#E2DDD3]">
               {/* Phone & WhatsApp Card */}
               <motion.a
                 href="https://wa.me/918608059455"
@@ -234,16 +234,16 @@ export default function EnquirySection() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.02, x: 4 }}
                 transition={{ duration: 0.25 }}
-                className="flex items-center gap-4 p-5 rounded-2xl bg-white border border-[#E2DDD3] hover:border-[#1B4332] transition-all group shadow-sm hover:shadow-md cursor-pointer"
+                className="flex items-center gap-3.5 sm:gap-4 p-4 sm:p-5 rounded-2xl bg-white border border-[#E2DDD3] hover:border-[#1B4332] transition-all group shadow-sm hover:shadow-md cursor-pointer"
               >
-                <div className="w-12 h-12 rounded-xl bg-[#EBF2EC] border border-[#DCE8DE] flex items-center justify-center text-[#1B4332] group-hover:bg-[#1B4332] group-hover:text-white transition-colors shrink-0 shadow-sm">
+                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-[#EBF2EC] border border-[#DCE8DE] flex items-center justify-center text-[#1B4332] group-hover:bg-[#1B4332] group-hover:text-white transition-colors shrink-0 shadow-sm">
                   <Phone className="w-5 h-5 stroke-[2.2]" />
                 </div>
                 <div>
                   <span className="text-[10px] font-mono uppercase tracking-wider text-[#737770] font-bold block">
                     Direct Phone / WhatsApp Order
                   </span>
-                  <span className="text-base font-bold text-[#121413] group-hover:text-[#1B4332] transition-colors">
+                  <span className="text-sm sm:text-base font-bold text-[#121413] group-hover:text-[#1B4332] transition-colors">
                     +91 86080 59455
                   </span>
                 </div>
@@ -253,9 +253,9 @@ export default function EnquirySection() {
               <motion.div
                 whileHover={{ scale: 1.02, x: 4 }}
                 transition={{ duration: 0.25 }}
-                className="flex items-center gap-4 p-5 rounded-2xl bg-white border border-[#E2DDD3] shadow-sm hover:shadow-md transition-all"
+                className="flex items-center gap-3.5 sm:gap-4 p-4 sm:p-5 rounded-2xl bg-white border border-[#E2DDD3] shadow-sm hover:shadow-md transition-all"
               >
-                <div className="w-12 h-12 rounded-xl bg-[#FAF5E6] border border-[#F0E5CA] flex items-center justify-center text-[#C07D38] shrink-0 shadow-sm">
+                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-[#FAF5E6] border border-[#F0E5CA] flex items-center justify-center text-[#C07D38] shrink-0 shadow-sm">
                   <MapPin className="w-5 h-5 stroke-[2.2]" />
                 </div>
                 <div>
@@ -270,7 +270,7 @@ export default function EnquirySection() {
             </div>
 
             {/* Trust Badges Grid */}
-            <div className="grid grid-cols-2 gap-3 pt-2">
+            <div className="grid grid-cols-2 gap-2.5 sm:gap-3 pt-2">
               {TRUST_BADGES.map((b, i) => (
                 <motion.div
                   key={i}
@@ -279,9 +279,9 @@ export default function EnquirySection() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.08 }}
                   whileHover={{ scale: 1.03 }}
-                  className="flex items-center gap-2.5 text-xs text-[#121413] font-semibold bg-white p-3.5 rounded-2xl border border-[#E2DDD3] shadow-sm"
+                  className="flex items-center gap-2 sm:gap-2.5 text-[11px] sm:text-xs text-[#121413] font-semibold bg-white p-3 sm:p-3.5 rounded-2xl border border-[#E2DDD3] shadow-sm"
                 >
-                  <b.icon className="w-4 h-4 shrink-0" style={{ color: b.color }} strokeWidth={2.4} />
+                  <b.icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" style={{ color: b.color }} strokeWidth={2.4} />
                   <span>{b.label}</span>
                 </motion.div>
               ))}
@@ -294,7 +294,7 @@ export default function EnquirySection() {
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, margin: '-10% 0px' }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-7 bg-gradient-to-br from-white via-[#FCFBF8] to-[#FAF5EC] rounded-[2.5rem] p-8 sm:p-12 lg:p-14 border-2 border-[#E2DDD3] hover:border-[#1B4332]/40 shadow-2xl shadow-[#121413]/10 relative overflow-hidden flex flex-col justify-between transition-colors duration-500"
+            className="lg:col-span-7 bg-gradient-to-br from-white via-[#FCFBF8] to-[#FAF5EC] rounded-3xl sm:rounded-[2.5rem] p-5 sm:p-12 lg:p-14 border-2 border-[#E2DDD3] hover:border-[#1B4332]/40 shadow-xl sm:shadow-2xl shadow-[#121413]/10 relative overflow-hidden flex flex-col justify-between transition-colors duration-500"
           >
             {/* Shimmer Light Sweep on Hover */}
             <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-1000 ease-in-out pointer-events-none z-20" />

@@ -28,7 +28,7 @@ export default function BrandPhilosophy() {
     <section
       ref={containerRef}
       id="story"
-      className="py-24 lg:py-36 bg-[#FAF7F2] relative overflow-hidden border-b border-[#E2DDD3]"
+      className="py-16 sm:py-24 lg:py-36 bg-[#FAF7F2] relative overflow-hidden border-b border-[#E2DDD3]"
     >
       {/* Decorative Atmospheric Floating Typography in Background */}
       <motion.div
@@ -44,14 +44,14 @@ export default function BrandPhilosophy() {
       {/* Ambient Grid Pattern */}
       <div className="absolute inset-0 opacity-[0.025] pointer-events-none bg-[radial-gradient(#121413_1px,transparent_1px)] [background-size:28px_28px]" />
 
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
         {/* Animated Kicker Badge */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="flex items-center gap-2.5 mb-8"
+          className="flex items-center gap-2.5 mb-6 sm:mb-8"
         >
           <span className="w-2.5 h-2.5 rounded-full bg-[#1B4332] animate-pulse" />
           <span className="font-sans text-[11px] font-bold uppercase tracking-[0.25em] text-[#1B4332] bg-[#EBF2EC] border border-[#DCE8DE] px-3.5 py-1 rounded-full shadow-sm">
@@ -60,16 +60,16 @@ export default function BrandPhilosophy() {
         </motion.div>
 
         {/* Master Architectural Manifesto Typography (Aligned & Staggered) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end mb-16 lg:mb-20 pb-8 border-b border-[#E2DDD3]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-end mb-12 sm:mb-16 lg:mb-20 pb-6 sm:pb-8 border-b border-[#E2DDD3]">
           {/* Left Block: "We don't just Make calendars." */}
-          <div className="lg:col-span-6 space-y-2">
+          <div className="lg:col-span-6 space-y-1 sm:space-y-2">
             <div className="overflow-hidden">
               <motion.span
                 initial={{ y: '100%', opacity: 0 }}
                 whileInView={{ y: '0%', opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="font-display font-extrabold text-4xl sm:text-6xl lg:text-7xl text-[#121413] tracking-tight uppercase block leading-[0.95]"
+                className="font-display font-extrabold text-3xl sm:text-5xl lg:text-7xl text-[#121413] tracking-tight uppercase block leading-[0.95]"
               >
                 We don’t just
               </motion.span>
@@ -80,7 +80,7 @@ export default function BrandPhilosophy() {
                 whileInView={{ y: '0%', opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="font-serif font-normal italic text-4xl sm:text-6xl lg:text-7xl text-[#1B4332] block capitalize leading-[0.95]"
+                className="font-serif font-normal italic text-3xl sm:text-5xl lg:text-7xl text-[#1B4332] block capitalize leading-[0.95]"
               >
                 Make calendars.
               </motion.span>
@@ -88,14 +88,14 @@ export default function BrandPhilosophy() {
           </div>
 
           {/* Right Block: "We design Better days." */}
-          <div className="lg:col-span-6 space-y-2 lg:pl-8 lg:border-l border-[#E2DDD3]">
+          <div className="lg:col-span-6 space-y-1 sm:space-y-2 lg:pl-8 lg:border-l border-[#E2DDD3]">
             <div className="overflow-hidden">
               <motion.span
                 initial={{ y: '100%', opacity: 0 }}
                 whileInView={{ y: '0%', opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="font-display font-extrabold text-4xl sm:text-6xl lg:text-7xl text-[#121413] tracking-tight uppercase block leading-[0.95]"
+                className="font-display font-extrabold text-3xl sm:text-5xl lg:text-7xl text-[#121413] tracking-tight uppercase block leading-[0.95]"
               >
                 We design
               </motion.span>
@@ -106,7 +106,7 @@ export default function BrandPhilosophy() {
                 whileInView={{ y: '0%', opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                className="font-serif font-normal italic text-4xl sm:text-6xl lg:text-7xl text-[#C07D38] block capitalize leading-[0.95]"
+                className="font-serif font-normal italic text-3xl sm:text-5xl lg:text-7xl text-[#C07D38] block capitalize leading-[0.95]"
               >
                 Better days.
               </motion.span>
@@ -115,14 +115,14 @@ export default function BrandPhilosophy() {
         </div>
 
         {/* Dynamic Dual Grid: Manifesto Reading (Left) + Grand Animated Header Image Stage (Right) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center my-12 lg:my-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-14 items-center my-8 sm:my-12 lg:my-16">
           {/* Left: Word-by-Word Scroll Color Reveal Manifesto */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 space-y-6"
+            className="lg:col-span-5 space-y-5 sm:space-y-6"
           >
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#1B4332] animate-pulse" />
@@ -133,11 +133,11 @@ export default function BrandPhilosophy() {
 
             <ScrollWordColorReveal
               paragraph="We believe planning your day should feel as beautiful as living it. In an age of relentless digital screens and fleeting notifications, a physical calendar is an anchor of quiet intention. Every sheet is cut from 280 GSM archival cotton, every binding coil is hand-aligned, and every date is made to be kept."
-              className="font-serif text-2xl sm:text-3xl leading-[1.38] text-[#121413] font-normal"
+              className="font-serif text-xl sm:text-2xl lg:text-3xl leading-[1.38] text-[#121413] font-normal"
             />
 
             {/* Core Values Badges */}
-            <div className="pt-2 flex flex-wrap items-center gap-3">
+            <div className="pt-2 flex flex-wrap items-center gap-2 sm:gap-3">
               {[
                 { icon: ShieldCheck, text: 'Archival Cotton Stock', color: '#1B4332' },
                 { icon: Compass, text: 'Gold Foiled Framing', color: '#C07D38' },
@@ -146,7 +146,7 @@ export default function BrandPhilosophy() {
                 <motion.div
                   key={idx}
                   whileHover={{ scale: 1.03, y: -2 }}
-                  className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-[#E2DDD3] text-xs font-mono font-semibold text-[#121413] shadow-sm hover:border-[#1B4332] transition-colors cursor-default"
+                  className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-xl bg-white border border-[#E2DDD3] text-[11px] sm:text-xs font-mono font-semibold text-[#121413] shadow-sm hover:border-[#1B4332] transition-colors cursor-default"
                 >
                   <val.icon className="w-3.5 h-3.5" style={{ color: val.color }} />
                   <span>{val.text}</span>
@@ -156,7 +156,7 @@ export default function BrandPhilosophy() {
           </motion.div>
 
           {/* Right: Grand Animated Header Image Stage with Multi-Layer 3D Physics */}
-          <div className="lg:col-span-7 relative">
+          <div className="lg:col-span-7 relative mt-4 lg:mt-0">
             <motion.div
               style={{ y: imageY, scale: imageScale }}
               initial={{ opacity: 0, scale: 0.94, y: 40 }}
@@ -167,7 +167,7 @@ export default function BrandPhilosophy() {
               <div className="float-card-1">
                 <Tilt3D maxTiltX={4} maxTiltY={4}>
                   <div
-                    className="group relative w-full h-[360px] sm:h-[460px] lg:h-[520px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-[#F3ECE0] cursor-pointer transition-all duration-500 hover:shadow-[0_30px_70px_-15px_rgba(27,67,50,0.25)]"
+                    className="group relative w-full h-[280px] sm:h-[420px] lg:h-[520px] rounded-3xl overflow-hidden shadow-xl sm:shadow-2xl border-2 sm:border-4 border-white bg-[#F3ECE0] cursor-pointer transition-all duration-500 hover:shadow-[0_30px_70px_-15px_rgba(27,67,50,0.25)]"
                     data-cursor="view"
                     data-cursor-text="CRAFT"
                   >

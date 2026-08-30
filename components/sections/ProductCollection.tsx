@@ -37,7 +37,7 @@ export default function ProductCollection() {
   return (
     <section
       id="collection"
-      className="py-24 lg:py-36 bg-[#FFFFFF] relative border-b border-[#E2DDD3] overflow-hidden"
+      className="hidden md:block py-24 lg:py-36 bg-[#FFFFFF] relative border-b border-[#E2DDD3] overflow-hidden"
     >
       {/* Giant Atmospheric Background Watermark Typography */}
       <div

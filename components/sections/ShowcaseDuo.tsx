@@ -24,7 +24,7 @@ export default function ShowcaseDuo() {
   return (
     <section
       ref={containerRef}
-      className="py-28 lg:py-40 bg-[#FFFFFF] relative overflow-hidden border-b border-[#E2DDD3]"
+      className="py-16 sm:py-28 lg:py-40 bg-[#FFFFFF] relative overflow-hidden border-b border-[#E2DDD3]"
     >
       {/* Giant Atmospheric Background Watermark Typography */}
       <motion.div
@@ -40,15 +40,15 @@ export default function ShowcaseDuo() {
       {/* Grid Pattern */}
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[radial-gradient(#121413_1px,transparent_1px)] [background-size:28px_28px]" />
 
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           {/* Asymmetrical Overlapping Calendar Showcase (Left/Center) */}
           <motion.div
-            initial={{ opacity: 0, y: 60 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-7 relative min-h-[520px] sm:min-h-[640px] flex items-center justify-center"
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-7 relative min-h-[420px] sm:min-h-[640px] flex items-center justify-center w-full"
           >
             {/* Ambient Shadow Layer */}
             <div className="absolute inset-0 bg-gradient-radial from-[#DCE8DE]/50 to-transparent blur-3xl -z-10" />

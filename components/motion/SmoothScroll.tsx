@@ -15,23 +15,29 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
   const lenisRef = useRef<Lenis | null>(null)
 
   useEffect(() => {
-    // Check if user prefers reduced motion
+    // Check if user prefers reduced motion or is on a touch device
     const prefersReducedMotion = window.matchMedia(
       '(prefers-reduced-motion: reduce)'
     ).matches
 
-    if (prefersReducedMotion) {
+    const isTouchDevice =
+      'ontouchstart' in window ||
+      navigator.maxTouchPoints > 0 ||
+      window.matchMedia('(pointer: coarse)').matches ||
+      window.innerWidth < 768
+
+    if (prefersReducedMotion || isTouchDevice) {
       return
     }
 
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.1,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 0.9,
-      touchMultiplier: 1.5,
+      wheelMultiplier: 0.95,
+      syncTouch: false,
       infinite: false,
     })
 
@@ -57,13 +63,13 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
       if (href && href.startsWith('#')) {
         e.preventDefault()
         if (href === '#top' || href === '#') {
-          lenis.scrollTo(0, { duration: 1.4 })
+          lenis.scrollTo(0, { duration: 1.2 })
         } else {
           const element = document.querySelector(href)
           if (element) {
             lenis.scrollTo(element as HTMLElement, {
               offset: -40,
-              duration: 1.4,
+              duration: 1.2,
             })
           }
         }

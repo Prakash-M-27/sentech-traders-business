@@ -102,7 +102,7 @@ export default function TestimonialsCarousel() {
       {/* Draggable Horizontal Carousel Container */}
       <div
         ref={carouselRef}
-        className="cursor-grab active:cursor-grabbing overflow-hidden pl-5 sm:pl-8 lg:pl-12 max-w-full"
+        className="cursor-grab active:cursor-grabbing overflow-hidden pl-4 sm:pl-8 lg:pl-12 max-w-full touch-pan-y"
         data-cursor="drag"
         data-cursor-text="DRAG →"
       >
@@ -110,47 +110,47 @@ export default function TestimonialsCarousel() {
           drag="x"
           dragConstraints={{ right: 0, left: -width - 40 }}
           whileTap={{ cursor: 'grabbing' }}
-          className="flex gap-6 sm:gap-8 pb-10"
+          className="flex gap-4 sm:gap-8 pb-8 sm:pb-10"
         >
           {brandTestimonials.map((item, idx) => (
             <motion.div
               key={idx}
-              className="w-[85vw] sm:w-[500px] lg:w-[540px] shrink-0 bg-white rounded-3xl p-8 sm:p-12 border-2 border-[#E2DDD3] hover:border-[#1B4332] shadow-md hover:shadow-2xl transition-all duration-400 flex flex-col justify-between select-none group"
+              className="w-[85vw] sm:w-[500px] lg:w-[540px] shrink-0 bg-white rounded-3xl p-6 sm:p-12 border-2 border-[#E2DDD3] hover:border-[#1B4332] shadow-md hover:shadow-2xl transition-all duration-400 flex flex-col justify-between select-none group"
             >
               {/* Header with Star Rating & Wall Placement Tag */}
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center justify-between mb-3 sm:mb-4">
                 <div className="flex items-center gap-1 text-[#C07D38]">
                   {[...Array(5)].map((_, sIdx) => (
-                    <Star key={sIdx} className="w-4 h-4 fill-current" />
+                    <Star key={sIdx} className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" />
                   ))}
                 </div>
 
-                <span className="inline-flex items-center gap-1.5 text-[10px] font-mono font-bold uppercase tracking-wider text-[#1B4332] bg-[#EBF2EC] border border-[#DCE8DE] px-3.5 py-1 rounded-full">
+                <span className="inline-flex items-center gap-1.5 text-[9px] sm:text-[10px] font-mono font-bold uppercase tracking-wider text-[#1B4332] bg-[#EBF2EC] border border-[#DCE8DE] px-3 py-1 rounded-full">
                   <Frame className="w-3 h-3 text-[#1B4332]" />
                   <span>Wall Mounted</span>
                 </span>
               </div>
 
               {/* Oversized Quotation Mark */}
-              <div className="font-serif text-5xl text-[#1B4332]/25 leading-none mb-3">
+              <div className="font-serif text-4xl sm:text-5xl text-[#1B4332]/25 leading-none mb-2 sm:mb-3">
                 “
               </div>
 
-              <blockquote className="font-serif text-xl sm:text-2xl text-[#121413] font-normal leading-snug">
+              <blockquote className="font-serif text-lg sm:text-2xl text-[#121413] font-normal leading-snug">
                 {item.quote}
               </blockquote>
 
-              <div className="pt-8 mt-8 border-t border-[#ECE7DE] flex items-center justify-between">
+              <div className="pt-6 sm:pt-8 mt-6 sm:mt-8 border-t border-[#ECE7DE] flex items-center justify-between">
                 <div>
                   <h4 className="font-display font-bold text-sm sm:text-base text-[#121413] group-hover:text-[#1B4332] transition-colors">
                     {item.author}
                   </h4>
-                  <p className="text-xs text-[#737770] font-sans mt-0.5 font-medium">
+                  <p className="text-[11px] sm:text-xs text-[#737770] font-sans mt-0.5 font-medium">
                     {item.role}, {item.company}
                   </p>
                 </div>
 
-                <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#737770] bg-[#F7F4EC] border border-[#E2DDD3] px-3.5 py-1 rounded-full">
+                <span className="text-[9px] sm:text-[10px] font-mono font-bold uppercase tracking-wider text-[#737770] bg-[#F7F4EC] border border-[#E2DDD3] px-3 py-1 rounded-full">
                   {item.location}
                 </span>
               </div>

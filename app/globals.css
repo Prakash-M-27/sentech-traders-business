@@ -242,54 +242,82 @@ svg {
   transform: scaleX(1);
 }
 
-/* Ambient Organic Card Floating Animations */
+/* Ambient Organic Card Floating Animations (Desktop) */
 @keyframes ambient-float-1 {
   0%, 100% {
-    transform: translateY(0px) rotate(0deg);
+    transform: translate3d(0, 0px, 0) rotate(0deg);
   }
   50% {
-    transform: translateY(-12px) rotate(0.6deg);
+    transform: translate3d(0, -12px, 0) rotate(0.6deg);
   }
 }
 
 @keyframes ambient-float-2 {
   0%, 100% {
-    transform: translateY(0px) rotate(0deg);
+    transform: translate3d(0, 0px, 0) rotate(0deg);
   }
   50% {
-    transform: translateY(-15px) rotate(-0.7deg);
+    transform: translate3d(0, -15px, 0) rotate(-0.7deg);
   }
 }
 
 @keyframes ambient-float-3 {
   0%, 100% {
-    transform: translateY(0px) rotate(0deg);
+    transform: translate3d(0, 0px, 0) rotate(0deg);
   }
   50% {
-    transform: translateY(-10px) rotate(0.5deg);
+    transform: translate3d(0, -10px, 0) rotate(0.5deg);
   }
 }
 
 @keyframes ambient-float-4 {
   0%, 100% {
-    transform: translateY(0px) rotate(0deg);
+    transform: translate3d(0, 0px, 0) rotate(0deg);
   }
   50% {
-    transform: translateY(-14px) rotate(-0.6deg);
+    transform: translate3d(0, -14px, 0) rotate(-0.6deg);
   }
 }
 
-.float-card-1 {
-  animation: ambient-float-1 4.5s ease-in-out infinite;
+@media (min-width: 768px) {
+  .float-card-1 {
+    animation: ambient-float-1 4.5s ease-in-out infinite;
+    will-change: transform;
+  }
+  .float-card-2 {
+    animation: ambient-float-2 5.2s ease-in-out infinite 0.4s;
+    will-change: transform;
+  }
+  .float-card-3 {
+    animation: ambient-float-3 4.8s ease-in-out infinite 0.8s;
+    will-change: transform;
+  }
+  .float-card-4 {
+    animation: ambient-float-4 5.5s ease-in-out infinite 1.2s;
+    will-change: transform;
+  }
 }
-.float-card-2 {
-  animation: ambient-float-2 5.2s ease-in-out infinite 0.4s;
+
+@media (max-width: 767px) {
+  .float-card-1,
+  .float-card-2,
+  .float-card-3,
+  .float-card-4 {
+    animation: none !important;
+  }
 }
-.float-card-3 {
-  animation: ambient-float-3 4.8s ease-in-out infinite 0.8s;
+
+/* Touch & Tap optimizations */
+button, a, input, select, textarea, [role="button"] {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
-.float-card-4 {
-  animation: ambient-float-4 5.5s ease-in-out infinite 1.2s;
+
+/* Disable sticky hover animations and transforms on touch/mobile viewports */
+@media (hover: none) and (pointer: coarse), (max-width: 767px) {
+  #top *:hover {
+    transform: none !important;
+  }
 }
 
 /* Reduced Motion Overrides */

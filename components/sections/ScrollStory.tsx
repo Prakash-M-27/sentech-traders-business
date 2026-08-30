@@ -65,8 +65,9 @@ export default function ScrollStory() {
   const scrollTriggerRef = useRef<ScrollTrigger | null>(null)
   const activeStepRef = useRef(0)
   const [activeIndex, setActiveIndex] = useState(0) // 0 (Step 1) to 3 (Step 4)
+  const [isDesktop, setIsDesktop] = useState(false)
 
-  // Smooth scroll to next or previous photo step
+  // Smooth scroll or step to next/previous photo step
   const handleNavigate = (direction: 'prev' | 'next') => {
     const currentStep = activeStepRef.current
     const targetStep =
@@ -76,16 +77,40 @@ export default function ScrollStory() {
 
     if (targetStep === currentStep) return
 
+    activeStepRef.current = targetStep
+    setActiveIndex(targetStep)
+
     const st = scrollTriggerRef.current
-    if (st) {
+    if (st && isDesktop) {
       const targetProgress = targetStep / 3
       const targetY = st.start + targetProgress * (st.end - st.start)
       window.scrollTo({ top: targetY, behavior: 'smooth' })
     }
   }
 
+  const handleStepSelect = (idx: number) => {
+    activeStepRef.current = idx
+    setActiveIndex(idx)
+
+    const st = scrollTriggerRef.current
+    if (st && isDesktop) {
+      const targetY = st.start + (idx / 3) * (st.end - st.start)
+      window.scrollTo({ top: targetY, behavior: 'smooth' })
+    }
+  }
+
   useEffect(() => {
     if (typeof window === 'undefined') return
+
+    const checkDesktop = () => {
+      const desktop = window.innerWidth >= 1024
+      setIsDesktop(desktop)
+      return desktop
+    }
+
+    const isDesk = checkDesktop()
+    if (!isDesk) return
+
     gsap.registerPlugin(ScrollTrigger)
 
     const section = sectionRef.current
@@ -103,7 +128,6 @@ export default function ScrollStory() {
       currentFloatIndex: number,
       currentProgress: number
     ) => {
-      // Update active step only on discrete step change to avoid re-renders
       const logicalStep = Math.min(
         Math.max(Math.round(currentFloatIndex), 0),
         3
@@ -113,12 +137,10 @@ export default function ScrollStory() {
         setActiveIndex(logicalStep)
       }
 
-      // Update progress bar width directly in DOM
       if (progressBar) {
         gsap.set(progressBar, { width: `${Math.min(currentProgress * 100, 100)}%` })
       }
 
-      // Parallax background watermark text drift
       if (bgWord) {
         const bgOffset = (currentProgress - 0.5) * -120
         gsap.set(bgWord, { x: bgOffset })
@@ -127,27 +149,23 @@ export default function ScrollStory() {
       const cardEl = cards[0]
       if (cardEl && track) {
         const cardWidth = cardEl.offsetWidth
-        const gap = 32 // gap-8 = 32px
+        const gap = 32
         const stride = cardWidth + gap
-        // Centering math: track has left: 50%. An offset of -cardWidth/2 centers card 0.
         const targetX = -(cardWidth / 2) - currentFloatIndex * stride
         gsap.set(track, { x: targetX })
       }
 
-      // End-stage subtle shrink (progress 0.88 -> 1.00)
       let endScaleFactor = 1.0
       let endYOffset = 0
 
       if (currentProgress > 0.88) {
-        const exitNorm = (currentProgress - 0.88) / 0.12 // 0 -> 1
+        const exitNorm = (currentProgress - 0.88) / 0.12
         endScaleFactor = gsap.utils.interpolate(1.0, 0.88, exitNorm)
         endYOffset = gsap.utils.interpolate(0, -20, exitNorm)
       }
 
       cards.forEach((card, i) => {
         const dist = Math.abs(i - currentFloatIndex)
-
-        // Strict 3-photo visibility logic:
         let opacity = 0
         let scale = 0.78
 
@@ -178,8 +196,8 @@ export default function ScrollStory() {
       })
     }
 
-    // GSAP ScrollTrigger Pinned Timeline across 380vh
-    const totalSteps = photoSlides.length - 1 // 3 steps (0 -> 1 -> 2 -> 3)
+    // GSAP ScrollTrigger Pinned Timeline across 380vh for Desktop Only
+    const totalSteps = photoSlides.length - 1
     const st = ScrollTrigger.create({
       trigger: section,
       start: 'top top',
@@ -190,16 +208,12 @@ export default function ScrollStory() {
       scrub: 1,
       onUpdate: (self) => {
         const p = self.progress
-
-        // 1. Timeline fade-in (progress 0.0 -> 0.12)
         if (timelineBar) {
           const barP = gsap.utils.clamp(0, 1, p / 0.12)
           const barOpacity = gsap.utils.interpolate(0, 1, barP)
           const barY = gsap.utils.interpolate(24, 0, barP)
           gsap.set(timelineBar, { opacity: barOpacity, y: barY })
         }
-
-        // 2. Continuous horizontal card sliding centering
         const currentFloatIndex = p * totalSteps
         updateTrackAndCards(currentFloatIndex, p)
       },
@@ -207,15 +221,19 @@ export default function ScrollStory() {
 
     scrollTriggerRef.current = st
 
-    // Initial setup on mount: Photo 1 in EXACT horizontal center
     if (timelineBar) {
       gsap.set(timelineBar, { opacity: 0, y: 24 })
     }
     updateTrackAndCards(0, 0)
 
     const handleResize = () => {
-      ScrollTrigger.refresh()
-      updateTrackAndCards(activeStepRef.current, 0)
+      const isNowDesk = checkDesktop()
+      if (isNowDesk) {
+        ScrollTrigger.refresh()
+        updateTrackAndCards(activeStepRef.current, 0)
+      } else {
+        st.kill()
+      }
     }
     window.addEventListener('resize', handleResize)
 
@@ -225,18 +243,131 @@ export default function ScrollStory() {
     }
   }, [])
 
+  const currentSlide = photoSlides[activeIndex] || photoSlides[0]
+
   return (
     <section
       ref={sectionRef}
       id="features"
-      className="bs-trigger relative bg-[#F7F4EC] border-b border-[#E2DDD3] overflow-hidden min-h-[380vh]"
+      className={`bs-trigger relative bg-[#F7F4EC] border-b border-[#E2DDD3] overflow-hidden ${
+        isDesktop ? 'min-h-[380vh]' : 'py-16 sm:py-24'
+      }`}
     >
-      {/* Pinned container .bs-pin stays fixed while scrolling through .bs-trigger */}
+      {/* MOBILE / TABLET DEDICATED LIGHTWEIGHT VIEW (<1024px) */}
+      <div className="block lg:hidden px-4 sm:px-8 max-w-xl mx-auto w-full">
+        {/* Header */}
+        <div className="flex items-center justify-between gap-3 pb-4 border-b border-[#E2DDD3] mb-6">
+          <div className="flex items-center gap-2.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#1B4332] animate-pulse" />
+            <h2 className="font-display font-extrabold text-xl sm:text-2xl text-[#121413] tracking-tight uppercase leading-none">
+              CALENDAR{' '}
+              <span className="font-serif font-normal italic text-[#1B4332] capitalize">
+                COLLECTIONS
+              </span>
+            </h2>
+          </div>
+
+          {/* Step Badges */}
+          <div className="flex items-center gap-1.5">
+            {mainPills.map((step, idx) => {
+              const isActive = activeIndex === idx
+              return (
+                <button
+                  key={step}
+                  type="button"
+                  onClick={() => handleStepSelect(idx)}
+                  className={`px-2.5 py-1 rounded-full font-mono text-[11px] font-bold transition-all border ${
+                    isActive
+                      ? 'bg-[#1B4332] text-white border-[#1B4332] shadow-sm'
+                      : 'bg-white text-[#737770] border-[#E2DDD3]'
+                  }`}
+                >
+                  {step}
+                </button>
+              )
+            })}
+          </div>
+        </div>
+
+        {/* Mobile Active Card Display */}
+        <div className="relative w-full rounded-3xl overflow-hidden bg-white border-2 border-[#E2DDD3] p-4 sm:p-5 shadow-lg flex flex-col items-center">
+          {/* Active Edition Badge */}
+          <div className="w-full flex items-center justify-between mb-3">
+            <div className="flex items-center gap-2">
+              <span
+                className="w-2.5 h-2.5 rounded-full"
+                style={{ backgroundColor: currentSlide.accent }}
+              />
+              <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#121413]">
+                Edition {currentSlide.step}
+              </span>
+            </div>
+            <span className="text-xs font-sans text-[#737770] font-semibold">
+              {currentSlide.subtitle}
+            </span>
+          </div>
+
+          {/* Calendar Image Frame */}
+          <div className="relative w-full aspect-[3/4] max-h-[460px] rounded-2xl overflow-hidden bg-[#FAF8F4] p-2 flex items-center justify-center border border-[#EAE4D8]">
+            <Image
+              src={currentSlide.image}
+              alt={currentSlide.alt}
+              fill
+              sizes="(max-width: 768px) 90vw, 500px"
+              className="object-contain object-center"
+              priority
+            />
+          </div>
+
+          {/* Title & Navigation Controls */}
+          <div className="w-full mt-4 flex items-center justify-between gap-3 pt-3 border-t border-[#ECE7DE]">
+            <div>
+              <h3 className="font-serif text-base sm:text-lg font-bold text-[#121413]">
+                {currentSlide.title}
+              </h3>
+              <p className="text-[11px] font-mono text-[#737770]">
+                0{activeIndex + 1} of 04 Editions
+              </p>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => handleNavigate('prev')}
+                disabled={activeIndex === 0}
+                aria-label="Previous edition"
+                className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${
+                  activeIndex === 0
+                    ? 'bg-[#EAE6DD] text-[#A6AAA2] cursor-not-allowed opacity-50'
+                    : 'bg-[#1B4332] text-white active:scale-95 shadow-md'
+                }`}
+              >
+                <ChevronLeft className="w-5 h-5 stroke-[2.5]" />
+              </button>
+              <button
+                type="button"
+                onClick={() => handleNavigate('next')}
+                disabled={activeIndex === 3}
+                aria-label="Next edition"
+                className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${
+                  activeIndex === 3
+                    ? 'bg-[#EAE6DD] text-[#A6AAA2] cursor-not-allowed opacity-50'
+                    : 'bg-[#1B4332] text-white active:scale-95 shadow-md'
+                }`}
+              >
+                <ChevronRight className="w-5 h-5 stroke-[2.5]" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* DESKTOP PINNED GSAP STAGE (>=1024px) */}
       <div
         ref={pinWrapperRef}
-        className="bs-pin h-screen w-full flex flex-col justify-between overflow-hidden py-4 sm:py-6 px-4 sm:px-8 lg:px-12 relative"
+        className="hidden lg:flex bs-pin h-screen w-full flex-col justify-between overflow-hidden py-4 sm:py-6 px-4 sm:px-8 lg:px-12 relative"
       >
-        {/* Giant Atmospheric Background Depth Typography (Like Hero Section Back Side) */}
+        {/* Giant Atmospheric Background Depth Typography */}
         <div
           ref={bgWordRef}
           className="absolute top-1/2 -translate-y-1/2 left-0 right-0 pointer-events-none select-none overflow-hidden opacity-[0.038] z-0 flex justify-center will-change-transform"
@@ -278,13 +409,7 @@ export default function ScrollStory() {
                     <button
                       key={step}
                       type="button"
-                      onClick={() => {
-                        const st = scrollTriggerRef.current
-                        if (st) {
-                          const targetY = st.start + (idx / 3) * (st.end - st.start)
-                          window.scrollTo({ top: targetY, behavior: 'smooth' })
-                        }
-                      }}
+                      onClick={() => handleStepSelect(idx)}
                       className={`px-3.5 py-1 rounded-full font-mono text-xs font-bold transition-all duration-300 border cursor-pointer ${
                         isActive
                           ? 'bg-[#1B4332] text-white border-[#1B4332] shadow-md scale-105 ring-2 ring-[#1B4332]/20'
@@ -432,7 +557,7 @@ export default function ScrollStory() {
               <Sparkles className="w-3.5 h-3.5 text-[#C07D38]" />
               <span>Browse Wall Editions (0{activeIndex + 1}/04)</span>
             </div>
-            <span className="hidden sm:inline font-bold text-[#1B4332]">
+            <span className="font-bold text-[#1B4332]">
               SEN TECH ARTISANAL EDITIONS
             </span>
           </div>

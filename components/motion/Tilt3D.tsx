@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState, type ReactNode, type MouseEvent } from 'react'
+import { useRef, useState, useEffect, type ReactNode, type MouseEvent } from 'react'
 import { motion, useSpring, useMotionValue } from 'framer-motion'
 
 interface Tilt3DProps {
@@ -20,6 +20,7 @@ export default function Tilt3D({
 }: Tilt3DProps) {
   const cardRef = useRef<HTMLDivElement>(null)
   const [isHovered, setIsHovered] = useState(false)
+  const [isDesktop, setIsDesktop] = useState(false)
 
   // Motion values
   const rawRotateX = useMotionValue(0)
@@ -34,8 +35,14 @@ export default function Tilt3D({
   const glowX = useSpring(rawGlowX, springConfig)
   const glowY = useSpring(rawGlowY, springConfig)
 
+  useEffect(() => {
+    const hasFinePointer = window.matchMedia('(pointer: fine)').matches
+    const isWideEnough = window.innerWidth >= 768
+    setIsDesktop(hasFinePointer && isWideEnough)
+  }, [])
+
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return
+    if (!isDesktop || !cardRef.current) return
 
     const rect = cardRef.current.getBoundingClientRect()
     const x = e.clientX - rect.left
@@ -57,17 +64,21 @@ export default function Tilt3D({
   }
 
   const handleMouseEnter = () => {
-    // Disable on touch devices
-    if (window.matchMedia('(pointer: coarse)').matches) return
+    if (!isDesktop) return
     setIsHovered(true)
   }
 
   const handleMouseLeave = () => {
+    if (!isDesktop) return
     setIsHovered(false)
     rawRotateX.set(0)
     rawRotateY.set(0)
     rawGlowX.set(50)
     rawGlowY.set(50)
+  }
+
+  if (!isDesktop) {
+    return <div className={`relative w-full h-full ${className}`}>{children}</div>
   }
 
   return (

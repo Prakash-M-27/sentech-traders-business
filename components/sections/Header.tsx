@@ -39,6 +39,17 @@ export default function Header() {
   }, [])
 
   useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [menuOpen])
+
+  useEffect(() => {
     if (searchOpen) {
       setTimeout(() => inputRef.current?.focus(), 80)
     }
@@ -173,7 +184,7 @@ export default function Header() {
                 {navLinks.map((link, idx) => (
                   <motion.a
                     key={link.name}
-                    href={link.href}
+                    href={link.href === '#collection' ? '#features' : link.href}
                     onClick={() => setMenuOpen(false)}
                     className="font-serif text-3xl text-[#121413] hover:text-[#1B4332] transition-colors"
                     initial={{ opacity: 0, x: -16 }}
