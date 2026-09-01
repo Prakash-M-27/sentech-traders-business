@@ -59,10 +59,7 @@ export const metadata: Metadata = {
     type: 'website',
   },
   icons: {
-    icon: [
-      { url: '/sentech_logo_180x180.png', sizes: '180x180', type: 'image/png' },
-      { url: '/icon-dark-32x32.png', sizes: '32x32', type: 'image/png' },
-    ],
+    icon: '/sentech_logo_180x180.png',
     apple: '/sentech_logo_180x180.png',
   },
 }
