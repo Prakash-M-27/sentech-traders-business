@@ -129,13 +129,13 @@ export default function Hero() {
         />
       </div>
 
-      {/* Atmospheric Subtle Watermark Background Typography */}
+      {/* Atmospheric Subtle Watermark Background Typography - Moved Up & Refined Width */}
       <motion.div
         style={isDesktop ? { y: bgTextY } : undefined}
-        className="absolute top-12 right-0 left-0 pointer-events-none select-none overflow-hidden opacity-[0.035] z-0 flex justify-center"
+        className="absolute inset-x-0 top-[22%] -translate-y-4 sm:-translate-y-8 lg:-translate-y-12 pointer-events-none select-none overflow-hidden opacity-[0.045] z-0 flex items-center justify-center text-center"
         aria-hidden="true"
       >
-        <span className="font-serif text-[18vw] leading-none whitespace-nowrap text-[#121413] tracking-tighter">
+        <span className="font-serif font-extrabold text-[21vw] sm:text-[18vw] lg:text-[16vw] xl:text-[17vw] leading-none whitespace-nowrap text-[#121413] tracking-tight uppercase">
           SEN TECH 2027
         </span>
       </motion.div>
