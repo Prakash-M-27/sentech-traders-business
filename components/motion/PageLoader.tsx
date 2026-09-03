@@ -16,6 +16,10 @@ export default function PageLoader() {
 
     if (prefersReducedMotion) {
       setLoading(false)
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new CustomEvent('page-card-start-fly'))
+        window.dispatchEvent(new CustomEvent('page-loaded'))
+      }
       return
     }
 
@@ -32,6 +36,12 @@ export default function PageLoader() {
         clearInterval(interval)
         setTimeout(() => {
           setLoading(false)
+          // As curtains slide up and expose the hero section, trigger fly-in visibly!
+          setTimeout(() => {
+            if (typeof window !== 'undefined') {
+              window.dispatchEvent(new CustomEvent('page-card-start-fly'))
+            }
+          }, 450)
         }, 80)
       }
     }, 20)
@@ -53,6 +63,12 @@ export default function PageLoader() {
             initial={{ y: '0%' }}
             exit={{ y: '-100%' }}
             transition={{ ...slideTransition, delay: 0.2 }}
+            onAnimationComplete={() => {
+              if (typeof window !== 'undefined') {
+                window.dispatchEvent(new CustomEvent('page-card-start-fly'))
+                window.dispatchEvent(new CustomEvent('page-loaded'))
+              }
+            }}
             className="absolute inset-0 bg-[#122F23] z-10"
           />
 

@@ -22,7 +22,7 @@ const photoSlides: PhotoSlide[] = [
     step: '01',
     title: 'Architectural Wall Edition',
     subtitle: 'Sage Editorial Minimalist',
-    image: '/cal_1.jpeg',
+    image: '/new_cal_1.jpeg',
     alt: 'Sen Tech Artisanal Calendar — Edition 01',
     accent: '#1B4332',
   },

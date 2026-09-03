@@ -27,7 +27,7 @@ export const products: Product[] = [
     tone: 'sage',
     accentColor: '#1B4332',
     badge: 'Bestseller',
-    photo: '/cal_1.jpeg',
+    photo: '/new_cal_1.jpeg',
     lifestylePhoto: '/header_image.png',
     specs: {
       paper: '280 GSM Archival Cotton Blend',

@@ -65,7 +65,7 @@ export default function ShowcaseDuo() {
                   data-cursor-text="EDITION 01"
                 >
                   <Image
-                    src="/cal_1.jpeg"
+                    src="/new_cal_1.jpeg"
                     alt="Sen Tech Daily Calendar Edition 01"
                     fill
                     sizes="(max-width: 768px) 80vw, 420px"
