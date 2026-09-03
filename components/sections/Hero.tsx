@@ -613,30 +613,13 @@ export default function Hero() {
           </div>
 
           {/* ========================================================================= */}
-          {/* 3. BELOW THE MAIN THING: OVERSIZED HEADLINE 'Make Room For good days.' */}
-          {/* ========================================================================= */}
-          <div className="mt-6 sm:mt-10 overflow-hidden py-1">
-            <motion.h1
-              initial={{ y: '40%', opacity: 0 }}
-              animate={{ y: '0%', opacity: 1 }}
-              transition={{ duration: 0.85, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="font-display font-black text-[2.4rem] xs:text-[3.2rem] sm:text-[4.6rem] lg:text-[5.6rem] leading-[0.96] text-[#121413] tracking-[-0.04em] uppercase"
-            >
-              Make Room For{' '}
-              <span className="font-serif font-normal italic lowercase text-[#1B4332] tracking-[-0.02em]">
-                good days.
-              </span>
-            </motion.h1>
-          </div>
-
-          {/* ========================================================================= */}
-          {/* 4. CLEAN DIRECT CALL-TO-ACTION BUTTONS */}
+          {/* 3. CLEAN DIRECT CALL-TO-ACTION BUTTONS */}
           {/* ========================================================================= */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.5 }}
-            className="mt-5 sm:mt-7 flex flex-wrap items-center justify-center gap-3 sm:gap-4"
+            transition={{ duration: 0.7, delay: 0.4 }}
+            className="mt-6 sm:mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4"
           >
             <MagneticButton
               as="a"

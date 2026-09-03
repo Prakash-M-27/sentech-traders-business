@@ -338,7 +338,7 @@ export default function ScrollStory() {
                 aria-label="Previous edition"
                 className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${
                   activeIndex === 0
-                    ? 'bg-[#EAE6DD] text-[#A6AAA2] cursor-not-allowed opacity-50'
+                    ? 'bg-[#1B4332] text-white border border-[#1B4332] opacity-75 cursor-not-allowed shadow-sm'
                     : 'bg-[#1B4332] text-white active:scale-95 shadow-md'
                 }`}
               >
@@ -351,7 +351,7 @@ export default function ScrollStory() {
                 aria-label="Next edition"
                 className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${
                   activeIndex === 3
-                    ? 'bg-[#EAE6DD] text-[#A6AAA2] cursor-not-allowed opacity-50'
+                    ? 'bg-[#1B4332] text-white border border-[#1B4332] opacity-75 cursor-not-allowed shadow-sm'
                     : 'bg-[#1B4332] text-white active:scale-95 shadow-md'
                 }`}
               >
@@ -434,7 +434,7 @@ export default function ScrollStory() {
 
           {/* Central Carousel Stage with High-Visibility Interactive Arrow Buttons & Glowing Shimmer */}
           <div className="w-full my-auto py-2 relative h-[62vh] sm:h-[68vh] lg:h-[72vh] max-h-[660px] overflow-visible flex items-center justify-center">
-            {/* Premium High-Visibility Left Arrow Button */}
+            {/* Premium High-Visibility Left Arrow Button - Green at Starting */}
             <button
               type="button"
               onClick={() => handleNavigate('prev')}
@@ -442,7 +442,7 @@ export default function ScrollStory() {
               aria-label="Previous calendar edition"
               className={`absolute left-0 sm:left-2 lg:left-4 top-1/2 -translate-y-1/2 z-40 w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-full flex items-center justify-center transition-all duration-300 ${
                 activeIndex === 0
-                  ? 'bg-[#E5DFD3] text-[#A8A296] border border-[#D5CEC0] cursor-not-allowed opacity-20 shadow-none'
+                  ? 'bg-[#1B4332] text-white border-2 border-[#1B4332] opacity-80 cursor-not-allowed shadow-md ring-4 ring-white/70'
                   : 'bg-[#1B4332] hover:bg-[#C07D38] text-[#F7F4EC] hover:text-white border-2 border-[#C07D38] hover:border-[#1B4332] shadow-[0_12px_32px_rgba(27,67,50,0.45)] hover:shadow-[0_16px_40px_rgba(192,125,56,0.55)] hover:scale-110 active:scale-95 cursor-pointer group ring-4 ring-white/70'
               }`}
               data-cursor="hover"
@@ -458,7 +458,7 @@ export default function ScrollStory() {
               aria-label="Next calendar edition"
               className={`absolute right-0 sm:right-2 lg:right-4 top-1/2 -translate-y-1/2 z-40 w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-full flex items-center justify-center transition-all duration-300 ${
                 activeIndex === 3
-                  ? 'bg-[#E5DFD3] text-[#A8A296] border border-[#D5CEC0] cursor-not-allowed opacity-20 shadow-none'
+                  ? 'bg-[#1B4332] text-white border-2 border-[#1B4332] opacity-80 cursor-not-allowed shadow-md ring-4 ring-white/70'
                   : 'bg-[#1B4332] hover:bg-[#C07D38] text-[#F7F4EC] hover:text-white border-2 border-[#C07D38] hover:border-[#1B4332] shadow-[0_12px_32px_rgba(27,67,50,0.45)] hover:shadow-[0_16px_40px_rgba(192,125,56,0.55)] hover:scale-110 active:scale-95 cursor-pointer group ring-4 ring-white/70'
               }`}
               data-cursor="hover"
